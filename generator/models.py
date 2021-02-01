@@ -10,7 +10,7 @@ class Categories(models.Model):
     slug = models.SlugField(max_length=250, unique=True, db_index=True)
 
     def get_absolute_url(self):
-        return reverse('site_category', kwargs={"slug": self.slug})
+        return reverse('site_category', kwargs={"slug_category": self.slug})
 
     def __str__(self):
         return self.name
@@ -25,7 +25,6 @@ class Categories(models.Model):
         super(Categories, self).save(*args, **kwargs)
 
 
-
 class Under_Categories(models.Model):
     """ Under Categories """
     category = models.ForeignKey(Categories, verbose_name="Категория", on_delete=models.CASCADE, related_name="under_category")
@@ -33,7 +32,7 @@ class Under_Categories(models.Model):
     slug = models.SlugField(max_length=250, unique=True, db_index=True)
 
     def get_absolute_url(self):
-        return reverse('site_under_cotegories', kwargs={"slug": self.slug})
+        return reverse('site_under_category', kwargs={"pk": self.id})
 
     def __str__(self):
         return self.name
@@ -48,9 +47,9 @@ class Under_Categories(models.Model):
         super(Under_Categories, self).save(*args, **kwargs)
 
 
-
 class Sites(models.Model):
     """ Sites """
+    category = models.ForeignKey(Categories, verbose_name="Категория", on_delete=models.CASCADE, related_name="sites")
     under_category = models.ForeignKey(Under_Categories, verbose_name="Под категория", on_delete=models.CASCADE, related_name="sites")
     name = models.CharField("Название сайта", max_length=200,)
     url = models.URLField(blank=True)
@@ -72,7 +71,6 @@ class Sites(models.Model):
         if not self.slug:
             self.slug = slugify(self.name, self.id)
         super(Sites, self).save(*args, **kwargs)
-
 
 
 class Articles(models.Model):
