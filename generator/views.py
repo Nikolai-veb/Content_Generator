@@ -14,14 +14,18 @@ class ListSitesView(ListView):
     def get_queryset(self):
         print(self.kwargs)
         queryset = Sites.objects.all()
-        if self.kwargs['slug_category']:
-                category = get_object_or_404 (Categories, slug=self.kwargs['slug_category'])
+        kwargs = self.kwargs
+        if kwargs:
+            try:
+                if kwargs['pk']:
+                    category = get_object_or_404(Under_Categories, id=kwargs['pk'])
+                    queryset = Sites.objects.filter(under_category=category)
+            except KeyError:
+                category = get_object_or_404 (Categories, slug=kwargs['slug_category'])
                 queryset = Sites.objects.filter(category=category)
-        elif self.kwargs['pk']:
-                category = get_object_or_404(Under_Categories, id=self.kwargs['pk'])
-                queryset = Sites.objects.filter(under_category=category)
         print(queryset)
         return queryset
+
 
     def get_context_data(self, **kwargs):
             context = super().get_context_data(**kwargs)
