@@ -1,8 +1,11 @@
 from django import forms
 from .models import Sites, Articles
 
-class AddSitesForm(forms.ModelForm):
+class AddArticlesForm(forms.ModelForm):
     """Add Sites"""
     class Meta:
         model = Sites
-        fields = ("under_category", "url")
+        fields = ("name",)
+        widgets = {
+            "name": forms.TextInput(attrs={"class": "form-control border"}),
+        }

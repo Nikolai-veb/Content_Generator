@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import View
 from django.views.generic import CreateView, UpdateView, ListView, DetailView
-from .forms import AddSitesForm
+from .forms import AddArticlesForm
 from .models import Categories, Under_Categories, Sites, Articles
-from django.db.models import Max, Min, Q
+
 
 class ListSitesView(ListView):
     """ List Sites"""
@@ -33,17 +33,3 @@ class ListSitesView(ListView):
             return context
 
 
-
-
-
-class AddSitesView(DetailView):
-    """Resizing Image Form"""
-    model = Sites
-    context_object_name = "sites"
-    slug_field = "slug"
-    template_name = "generator/add_sites.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["form"] = AddSitesForm()
-        return context
