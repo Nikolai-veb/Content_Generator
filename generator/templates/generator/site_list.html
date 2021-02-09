@@ -2,39 +2,41 @@
 {% block title %}
 {% endblock %}
 {% block content %}
-    <div class="product-standard product-grid">
-        <div class="container container-42">
-            <div class="tab-content">
-                <div id="all" class="tab-pane fade in active">
-                    <div class="row">
-                        {% for site in sites %}
-                        <div class="col-md-15 col-sm-3 col-xs-6 product-item">
-                            <div class="product-images">
-                                <p style="font-weight: bold; ">
-                                    <a style="color: rgb(234, 47, 16); font-size: 17px; --darkreader-inline-color:#f74427;" href="{{ site.url }}" target="_blank" data-darkreader-inline-color="">{{ site.name }}</a>
-                                </p>
+<div class="title">
+    <h1 class="text-center" style="font-weight: bold;">Home Page</h1>
+</div>
+<div class="container">
+    <div class="row">
+{% for site in sites %}
+<div class="col-md-4">
+    <p style="font-weight: bold; margin-bottom: 0px;">
+        <a style="color: rgb(234, 47, 16); font-size: 17px; --darkreader-inline-color:#f74427;" href="https://www.linux.com/" target="_blank" data-darkreader-inline-color="">
+            Linux.com
+        </a>
+        <span style="font-weight: normal; color: rgb(153, 153, 153); font-size: 75%; --darkreader-inline-color:#aaa296;" data-darkreader-inline-color="">
+            <a href="https://www.linux.com/" target="_blank">(www.linux.com)</a>
+        </span>
+    </p>
+    <p class="two-line-ellipsis" style="color: rgb(153, 153, 153); --darkreader-inline-color:#aaa296;" data-darkreader-inline-color="">
+        <span class="ellip">
+            <span style="white-space: nowrap;">
 
-                            </div>
-                            <div class="product-info-ver2">
-
-                                <ul style="list-style: none; padding-left: 0px;">
-                                    {% for article in site.article.values %}
-                                    <li style="padding: 3px 0px 0px; border-bottom: 1px solid rgb(238, 237, 237); --darkreader-inline-border-bottom:#313539;" class=" " data-darkreader-inline-border-bottom="">
-                                        <a class="one-line-ellipsis" style="color: rgb(34, 34, 34); --darkreader-inline-color:#d7d3cd;" href="{{ article.url }}" target="_blank" tabindex="0" data-toggle="popover" data-html="true" data-placement="auto" data-content="<a style=&quot;font-weight: bold; color: #fff; text-decoration: none;&quot; href=&quot;https://mobile.twitter.com/Linus__Torvalds/status/636194310552064000?p=v&quot;>Happy Birthday Linux ! pic.twitter.com/8KO1GCmNoN </a><br>Happy Birthday Linux !  pic.twitter.com/8KO1GCmNoN" data-darkreader-inline-color="" data-original-title="" title="">
-                                            <span class="ellip ellip-line">{{ article.name }}</span>
-                                        </a>
-                                    </li>
-                                    {% endfor %}
-                                </ul>
-
-                            </div>
-                        </div>
-                        {% endfor %}
-                  </div>
-
-                </div>
-            </div>
-        </div>
+            </span>
+        </span>
+    </p>
+    <ul style="list-style: none; padding-left: 0px;">
+        {% for article in site.article.values %}
+        <li style="padding: 3px 0px 0px; border-bottom: 1px solid rgb(238, 237, 237); --darkreader-inline-border-bottom:#313539;" class=" " data-darkreader-inline-border-bottom="">
+            <a class="one-line-ellipsis" style="color: rgb(34, 34, 34); --darkreader-inline-color:#d7d3cd;" href="{{ article.url }}" target="_blank" tabindex="0" data-toggle="popover" data-html="true" data-placement="auto" data-content="><a style=&quot;font-weight: bold; color: #fff; text-decoration: none;&quot; href=&quot;https://www.linux.com/news/vmware-talks-acquire-pivotal&quot;>
+                <span class="ellip ellip-line">
+                    {{ article.name }}
+                </span>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endfor %}
     </div>
-
+</div>
 {% endblock %}
